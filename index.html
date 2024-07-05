@@ -1,0 +1,607 @@
+<html><head><base href="https://websim.ai/fitstreak/"><title>The 60 Days To Aesthetic Workout Guide - FitStreak</title><style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    h1, h2, h3, h4 {
+        color: #2c3e50;
+    }
+    .header {
+        background-color: #3498db;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .header h1, .header p {
+        color: white;
+    }
+    .section {
+        background-color: white;
+        margin: 20px 0;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .workout-plan {
+        display: flex;
+        flex-direction: column;
+    }
+    .workout-day {
+        margin-bottom: 20px;
+        background-color: #ecf0f1;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .day-header {
+        background-color: #3498db;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .day-header h3, .day-header .arrow {
+        color: white;
+    }
+    .day-content {
+        display: none;
+        padding: 10px;
+    }
+    .day-content.active {
+        display: block;
+    }
+    .exercise {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .timer {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0;
+    }
+    button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 5px;
+    }
+    button:hover {
+        background-color: #2980b9;
+    }
+    button:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+    }
+    .progress-bar {
+        width: 100%;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .progress {
+        width: 0;
+        height: 20px;
+        background-color: #2ecc71;
+        transition: width 0.5s;
+    }
+    .set-data {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .set-data input {
+        width: 60px;
+        padding: 5px;
+        margin-right: 10px;
+    }
+    .set-history {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    .set-history-item {
+        background-color: #f0f0f0;
+        padding: 5px;
+        margin-bottom: 5px;
+        border-radius: 3px;
+    }
+    .arrow {
+        transition: transform 0.3s;
+    }
+    .arrow.active {
+        transform: rotate(180deg);
+    }
+</style></head><body>
+    <div class="header">
+        <h1>60 DAY PLAN FOR AESTHETICS</h1>
+        <p>Your progress tracking workout plan</p>
+    </div>
+
+    <div class="section">
+        <h2>Interactive Workout Plan</h2>
+        <p>Click on a day to view its exercises. Use the 1-minute rest timer between sets. Input your weight and reps for each set to track your progress.</p>
+        <div class="workout-plan" id="workoutPlan">
+            <!-- Workout days will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+    const workoutPlan = [
+        {
+            day: "Day 1: Chest and Triceps",
+            exercises: [
+                { name: "Bench Press", sets: 4, reps: "8-10" },
+                { name: "Incline Dumbbell Press", sets: 3, reps: "10-12" },
+                { name: "Cable Flyes", sets: 3, reps: "12-15" },
+                { name: "Tricep Pushdowns", sets: 3, reps: "10-12" },
+                { name: "Overhead Tricep Extensions", sets: 3, reps: "10-12" }
+            ]
+        },
+        {
+            day: "Day 2: Back and Biceps",
+            exercises: [
+                { name: "Deadlifts", sets: 4, reps: "6-8" },
+                { name: "Pull-ups or Lat Pulldowns", sets: 3, reps: "8-10" },
+                { name: "Bent Over Rows", sets: 3, reps: "8-10" },
+                { name: "Barbell Curls", sets: 3, reps: "10-12" },
+                { name: "Hammer Curls", sets: 3, reps: "10-12" }
+            ]
+        },
+        {
+            day: "Day 3: Legs and Shoulders",
+            exercises: [
+                { name: "Squats", sets: 4, reps: "8-10" },
+                { name: "Leg Press", sets: 3, reps: "10-12" },
+                { name: "Romanian Deadlifts", sets: 3, reps: "10-12" },
+                { name: "Military Press", sets: 3, reps: "8-10" },
+                { name: "Lateral Raises", sets: 3, reps: "12-15" }
+            ]
+        },
+        {
+            day: "Day 4: Full Body",
+            exercises: [
+                { name: "Dips", sets: 3, reps: "8-10" },
+                { name: "Chin-ups", sets: 3, reps: "8-10" },
+                { name: "Lunges", sets: 3, reps: "10-12 per leg" },
+                { name: "Face Pulls", sets: 3, reps: "12-15" },
+                { name: "Plank", sets: 3, reps: "30-60 seconds" }
+            ]
+        }
+    ];
+
+    function createWorkoutDay(day, exercises, index) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'workout-day';
+        dayElement.innerHTML = `
+            <div class="day-header" onclick="toggleDay(${index})">
+                <h3>${day}</h3>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="day-content" id="day-content-${index}">
+                ${exercises.map((exercise, exerciseIndex) => `
+                    <div class="exercise">
+                        <h4>${exercise.name}</h4>
+                        <p>${exercise.sets} sets of ${exercise.reps} reps</p>
+                        <div class="timer" id="timer-${index}-${exerciseIndex}">01:00</div>
+                        <div class="progress-bar">
+                            <div class="progress" id="progress-${index}-${exerciseIndex}"></div>
+                        </div>
+                        <button onclick="startTimer(${index}, ${exerciseIndex}, ${exercise.sets})">Start Rest</button>
+                        <button onclick="resetTimer(${index}, ${exerciseIndex})">Reset</button>
+                        <div class="set-data">
+                            <input type="number" id="weight-${index}-${exerciseIndex}" placeholder="Weight (kg)">
+                            <input type="number" id="reps-${index}-${exerciseIndex}" placeholder="Reps">
+                            <button onclick="logSet(${index}, ${exerciseIndex})">Log Set</button>
+                        </div>
+                        <div class="set-history" id="history-${index}-${exerciseIndex}"></div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        return dayElement;
+    }
+
+    const workoutPlanElement = document.getElementById('workoutPlan');
+    workoutPlan.forEach((day, index) => {
+        workoutPlanElement.appendChild(createWorkoutDay(day.day, day.exercises, index));
+    });
+
+    function toggleDay(index) {
+        const content = document.getElementById(`day-content-${index}`);
+        const arrow = content.previousElementSibling.querySelector('.arrow');
+        content.classList.toggle('active');
+        arrow.classList.toggle('active');
+    }
+
+    let timers = {};
+
+    function startTimer(dayIndex, exerciseIndex, totalSets) {
+        const timerId = `${dayIndex}-${exerciseIndex}`;
+        if (timers[timerId]) {
+            clearInterval(timers[timerId].interval);
+        }
+
+        const timerElement = document.getElementById(`timer-${timerId}`);
+        const progressElement = document.getElementById(`progress-${timerId}`);
+        const button = timerElement.nextElementSibling.nextElementSibling;
+
+        let time = 60;
+        let currentSet = 1;
+
+        button.disabled = true;
+
+        timers[timerId] = {
+            interval: setInterval(() => {
+                time--;
+                const minutes = Math.floor(time / 60);
+                const seconds = time % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                const progress = ((60 - time) / 60) * 100;
+                progressElement.style.width = `${Math.min(progress, 100)}%`;
+
+                if (time <= 0) {
+                    clearInterval(timers[timerId].interval);
+                    button.disabled = false;
+                    if (currentSet < totalSets) {
+                        currentSet++;
+                        button.textContent = `Start Rest (Set ${currentSet})`;
+                    } else {
+                        button.textContent = 'Exercise Complete!';
+                        button.disabled = true;
+                    }
+                }
+            }, 1000)
+        };
+    }
+
+    function resetTimer(dayIndex, exerciseIndex) {
+        const timerId = `${dayIndex}-${exerciseIndex}`;
+        if (timers[timerId]) {
+            clearInterval(timers[timerId].interval);
+        }
+
+        const timerElement = document.getElementById(`timer-${timerId}`);
+        const progressElement = document.getElementById(`progress-${timerId}`);
+        const button = timerElement.nextElementSibling.nextElementSibling;
+
+        timerElement.textContent = '01:00';
+        progressElement.style.width = '0%';
+        button.disabled = false;
+        button.textContent = 'Start Rest';
+    }
+
+    function logSet(dayIndex, exerciseIndex) {
+        const weightInput = document.getElementById(`weight-${dayIndex}-${exerciseIndex}`);
+        const repsInput = document.getElementById(`reps-${dayIndex}-${exerciseIndex}`);
+        const historyElement = document.getElementById(`history-${dayIndex}-${exerciseIndex}`);
+
+        const weight = weightInput.value;
+        const reps = repsInput.value;
+
+        if (weight && reps) {
+            const date = new Date().toLocaleDateString();
+            const setData = `${date}: ${weight}kg x ${reps} reps`;
+
+            const setElement = document.createElement('div');
+            setElement.className = 'set-history-item';
+            setElement.textContent = setData;
+
+            historyElement.insertBefore(setElement, historyElement.firstChild);
+
+            // Store data in localStorage
+            const storageKey = `exercise-${dayIndex}-${exerciseIndex}`;
+            const storedData = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            storedData.push({ date, weight, reps });
+            localStorage.setItem(storageKey, JSON.stringify(storedData));
+
+            weightInput.value = '';
+            repsInput.value = '';
+        }
+    }
+
+    // Load stored data on page load
+    function loadStoredData() {
+        workoutPlan.forEach((day, dayIndex) => {
+            day.exercises.forEach((exercise, exerciseIndex) => {
+                const storageKey = `exercise-${dayIndex}-${exerciseIndex}`;
+                const storedData = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                const historyElement = document.getElementById(`history-${dayIndex}-${exerciseIndex}`);
+
+                storedData.forEach(data => {
+                    const setElement = document.createElement('div');
+                    setElement.className = 'set-history-item';
+                    setElement.textContent = `${data.date}: ${data.weight}kg x ${data.reps} reps`;
+                    historyElement.appendChild(setElement);
+                });
+            });
+        });
+    }
+
+    loadStoredData();
+    </script>
+
+    <div class="section">
+    <h2>Daily Calorie Counter</h2>
+    <div id="calorieCounter">
+        <div class="calorie-input">
+            <input type="number" id="calorieInput" placeholder="Enter calories" min="0" step="1">
+            <button onclick="addCalories()">Add Calories</button>
+        </div>
+        <div class="calorie-display">
+            <p>Total calories today: <span id="totalCalories">0</span></p>
+            <div class="progress-bar">
+                <div class="progress" id="calorieProgress"></div>
+            </div>
+            <p>Goal: <span id="calorieGoal">3000</span> calories</p>
+        </div>
+        <div class="calorie-controls">
+            <button onclick="resetCalories()">Reset for New Day</button>
+            <button onclick="setCalorieGoal()">Set New Goal</button>
+        </div>
+    </div>
+
+    <style>
+        #calorieCounter {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .calorie-input {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .calorie-input input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        .calorie-input button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        .calorie-display {
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+        }
+        .calorie-controls button {
+            margin-right: 10px;
+            padding: 8px 12px;
+            font-size: 14px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .calorie-controls button:last-child {
+            background-color: #FF9800;
+        }
+    </style>
+
+    <script>
+        let totalCalories = 0;
+        let calorieGoal = 3000;
+
+        // Load saved data
+        window.onload = function() {
+            const savedDate = localStorage.getItem('calorieDate');
+            const currentDate = new Date().toDateString();
+
+            if (savedDate === currentDate) {
+                totalCalories = parseInt(localStorage.getItem('totalCalories')) || 0;
+                calorieGoal = parseInt(localStorage.getItem('calorieGoal')) || 3000;
+            } else {
+                resetCalories();
+            }
+
+            updateCalorieDisplay();
+        };
+
+        function addCalories() {
+            const input = document.getElementById('calorieInput');
+            const calories = parseInt(input.value);
+            if (calories > 0) {
+                totalCalories += calories;
+                updateCalorieDisplay();
+                saveCalorieData();
+                input.value = '';
+            }
+        }
+
+        function resetCalories() {
+            totalCalories = 0;
+            updateCalorieDisplay();
+            saveCalorieData();
+        }
+
+        function setCalorieGoal() {
+            const newGoal = prompt("Enter new calorie goal:", calorieGoal);
+            if (newGoal !== null && !isNaN(newGoal) && newGoal > 0) {
+                calorieGoal = parseInt(newGoal);
+                document.getElementById('calorieGoal').textContent = calorieGoal;
+                updateCalorieDisplay();
+                localStorage.setItem('calorieGoal', calorieGoal);
+            }
+        }
+
+        function updateCalorieDisplay() {
+            document.getElementById('totalCalories').textContent = totalCalories;
+            document.getElementById('calorieGoal').textContent = calorieGoal;
+            const progress = (totalCalories / calorieGoal) * 100;
+            document.getElementById('calorieProgress').style.width = `${Math.min(progress, 100)}%`;
+        }
+
+        function saveCalorieData() {
+            localStorage.setItem('totalCalories', totalCalories);
+            localStorage.setItem('calorieDate', new Date().toDateString());
+        }
+    </script>
+</div>
+
+    <div class="section">
+        <h2>Progress Tracker</h2>
+        <div class="progress-bar">
+            <div class="progress" id="overallProgress"></div>
+        </div>
+        <p>Days completed: <span id="daysCompleted">0</span> / 60</p>
+        <button onclick="updateOverallProgress()">Mark Day as Complete</button>
+    </div>
+
+    <script>
+    let daysCompleted = localStorage.getItem('daysCompleted') || 0;
+    daysCompleted = parseInt(daysCompleted);
+    
+    function updateOverallProgress() {
+        if (daysCompleted < 60) {
+            daysCompleted++;
+            document.getElementById('daysCompleted').innerText = daysCompleted;
+            let progressPercentage = (daysCompleted / 60) * 100;
+            document.getElementById('overallProgress').style.width = progressPercentage + '%';
+            localStorage.setItem('daysCompleted', daysCompleted);
+        }
+    }
+
+    // Initialize progress on page load
+    document.getElementById('daysCompleted').innerText = daysCompleted;
+    document.getElementById('overallProgress').style.width = (daysCompleted / 60) * 100 + '%';
+    </script>
+
+    <div class="section">
+    <h2>Mindfulness Break</h2>
+    <p>Take a moment to relax and recharge with our 10-minute mindfulness session.</p>
+    <div id="relaxation-container">
+        <div id="breathing-circle"></div>
+        <p id="instruction">Breathe in...</p>
+        <button id="start-mindfulness">Start 10-Minute Session</button>
+        <div id="timer">10:00</div>
+    </div>
+
+    <style>
+        #relaxation-container {
+            text-align: center;
+            padding: 20px;
+        }
+        #breathing-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #3498db;
+            margin: 0 auto 20px;
+            animation: breathe 8s infinite ease-in-out;
+            display: none;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+        }
+        #instruction {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        #start-mindfulness {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #timer {
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .credits {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        let intervalId;
+        let timeLeft = 600; // 10 minutes in seconds
+        const breathingCircle = document.getElementById('breathing-circle');
+        const instruction = document.getElementById('instruction');
+        const startButton = document.getElementById('start-mindfulness');
+        const timer = document.getElementById('timer');
+
+        startButton.addEventListener('click', startMindfulnessSession);
+
+        function startMindfulnessSession() {
+            breathingCircle.style.display = 'block';
+            startButton.style.display = 'none';
+            updateTimer();
+            intervalId = setInterval(updateSession, 1000);
+        }
+
+        function updateSession() {
+            timeLeft--;
+            updateTimer();
+            
+            if (timeLeft % 8 < 4) {
+                instruction.textContent = 'Breathe in...';
+            } else {
+                instruction.textContent = 'Breathe out...';
+            }
+
+            if (timeLeft <= 0) {
+                clearInterval(intervalId);
+                endSession();
+            }
+        }
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function endSession() {
+            breathingCircle.style.display = 'none';
+            instruction.textContent = 'Session complete. Great job!';
+            startButton.style.display = 'inline-block';
+            startButton.textContent = 'Start Another Session';
+            timeLeft = 600;
+        }
+    </script>
+
+    <p class="credits">This site was built by JaiiTriips and should only be accessed by those who were given the password and paying for the service.</p>
+</div>
+</body></html>
