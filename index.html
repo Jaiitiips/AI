@@ -1,770 +1,312 @@
-<html><head><base href="https://websim.ai/fitstreak/"><title>The 60 Days To Aesthetic Workout Guide - FitStreak</title><style>
-    body {
-        font-family: 'Roboto', sans-serif;
-        line-height: 1.6;
-        color: #333;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f4f4f4;
-    }
-    h1, h2, h3, h4 {
-        color: #2c3e50;
-    }
-    .header {
-        background-color: #3498db;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        border-radius: 5px;
-    }
-    .header h1, .header p {
-        color: white;
-    }
-    .section {
-        background-color: white;
-        margin: 20px 0;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .workout-plan {
-        display: flex;
-        flex-direction: column;
-    }
-    .workout-day {
-        margin-bottom: 20px;
-        background-color: #ecf0f1;
-        border-radius: 5px;
-        overflow: hidden;
-    }
-    .day-header {
-        background-color: #3498db;
-        color: white;
-        padding: 10px;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .day-header h3, .day-header .arrow {
-        color: white;
-    }
-    .day-content {
-        display: none;
-        padding: 10px;
-    }
-    .day-content.active {
-        display: block;
-    }
-    .exercise {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-    .timer {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        margin: 10px 0;
-    }
-    button {
-        background-color: #3498db;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        margin: 5px;
-    }
-    button:hover {
-        background-color: #2980b9;
-    }
-    button:disabled {
-        background-color: #bdc3c7;
-        cursor: not-allowed;
-    }
-    .progress-bar {
-        width: 100%;
-        background-color: #e0e0e0;
-        border-radius: 5px;
-        overflow: hidden;
-    }
-    .progress {
-        width: 0;
-        height: 20px;
-        background-color: #2ecc71;
-        transition: width 0.5s;
-    }
-    .set-data {
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
-    }
-    .set-data input {
-        width: 60px;
-        padding: 5px;
-        margin-right: 10px;
-    }
-    .set-history {
-        margin-top: 10px;
-        font-size: 14px;
-    }
-    .set-history-item {
-        background-color: #f0f0f0;
-        padding: 5px;
-        margin-bottom: 5px;
-        border-radius: 3px;
-    }
-    .arrow {
-        transition: transform 0.3s;
-    }
-    .arrow.active {
-        transform: rotate(180deg);
-    }
-</style></head><body>
-    <div class="header">
-        <h1>Limitless Workout & Calorie Tracker</h1>
-        <p>The key to achieving your goal</p>
+<!DOCTYPE html><html><head><base href="https://workoutmaker.com/">
+<style>
+:root {
+  --primary: #2C3E50;
+  --accent: #E74C3C;
+  --light: #ECF0F1;
+  --text: #2C3E50;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.header {
+  background: var(--primary);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header svg {
+  position: absolute;  
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  fill: var(--light);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  fill: var(--accent);
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  margin-top: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+}
+
+.steps {
+  background: white;
+  padding: 3rem;
+  border-radius: 10px;
+  margin: 3rem 0;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.step-number {
+  background: var(--accent);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.about-section {
+  background: white;
+  padding: 3rem;
+  border-radius: 10px;
+  margin: 3rem 0;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.price-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+  margin: 1rem 0;
+}
+
+.feature-list {
+  list-style: none;
+  margin: 1.5rem 0;
+}
+
+.feature-list li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  position: relative;
+}
+
+.feature-list li::before {
+  content: '✓';
+  color: var(--accent);
+  margin-right: 0.5rem;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <h1>WorkoutMaker</h1>
+  <p>Track, Share, and Optimize Your Training Journey</p>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path style="display: none" fill-opacity="1" d="M0,160L48,165.3C96,171,192,181,288,176C384,171,480,149,576,149.3C672,149,768,171,864,181.3C960,192,1056,192,1152,176C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+  </svg>
+</header>
+
+<div class="container">
+  <div class="features">
+    <div class="feature-card">
+      <svg class="feature-icon floating-icon" viewBox="0 0 24 24">
+        <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path>
+      </svg>
+      <h3>Customizable Plans</h3>
+      <p>Create and modify workout plans that fit your schedule perfectly. Choose from hundreds of exercises or add your own custom movements.</p>
     </div>
-
-    <div class="section">
-        <h2>Interactive Workout Plan</h2>
-        <p>Click on a day to view its exercises. Use the 1-minute rest timer between sets. Input your weight and reps for each set to track your progress.</p>
-        <div class="workout-plan" id="workoutPlan">
-            <!-- Workout days will be dynamically inserted here -->
-        </div>
-    </div>
-
-    <script>
-    const workoutPlan = [
-        {
-            day: "Day 1: Chest, Triceps & Calves",
-            exercises: [
-                { name: "(Warm up) Barbell Bench Press", sets: 2, reps: "5-10" },
-                { name: "Barbell Bench Press", sets: 4, reps: "10-12" },
-                { name: "Barbell Incline Bench Press", sets: 4, reps: "10-12" },
-                { name: "Incline Dumbbell flyes", sets: 4, reps: "10-12" },
-                { name: "Triceps Push Down", sets: 4, reps: "10-12" },
-                { name: "OverHead Tricep Extensions", sets: 4, reps: "10-12" },
-                { name: "Cable Crossover", sets: 4, reps: "10-12" },
-                { name: "Seated Calf Raises", sets: 4, reps: "10-30" }
-            ]
-        },
-        {
-            day: "Day 2: Back, Biceps & Abs",
-            exercises: [
-                { name: "(Warm up) Single-Arm Dumbbell row", sets: 2, reps: "5-10" },
-                { name: "Single-Arm Dumbbell Row", sets: 4, reps: "8-10" },
-                { name: "Lat Pull Down", sets: 4, reps: "8-10" },
-                { name: "Straight Arm Pull Down", sets: 4, reps: "10-12" },
-                { name: "Barbell Curl", sets: 4, reps: "8-10" },
-                { name: "Bent Over Rows", sets: 4, reps: "8-10" },
-                { name: "Alternating Incline Dumbbell Biceps Curl", sets: 4, reps: "10-12" },
-                { name: "Crunches", sets: 4, reps: "10-12" }
-            ]
-        },
-        {
-            day: "Day 3: Shoulders, Traps & Calves",
-            exercises: [
-                { name: "(Warm up) Seated Dumbbell Shoulder Press", sets: 2, reps: "5-10" },
-                { name: "Seated Dumbbell Shoulder Press", sets: 4, reps: "8-10" },
-                { name: "Dumbbell Later Raise", sets: 4, reps: "8-10" },
-                { name: "Single Arm Cable Front Raises", sets: 4, reps: "8-10" },
-                { name: "Standing Dumbbell Shrugs", sets: 4, reps: "8-10" },
-                { name: "Standing Calf Raises", sets: 4, reps: "25-50" },
-                { name: "Leg Press Calf Raises", sets: 4, reps: "10-20" }
-            ]
-        },
-        {
-            day: "Day 4: Legs & Abs",
-            exercises: [
-                { name: "Romanian Dead Lift", sets: 4, reps: "8-10" },
-                { name: "Barbell Squat", sets: 4, reps: "1-10" },
-                { name: "Seated Leg Press", sets: 4, reps: "10-12" },
-                { name: "Leg Extensions", sets: 4, reps: "10-12" },
-                { name: "Ab Crunches", sets: 4, reps: "10-15" }
-            ]
-        }
-    ];
-
-    function createWorkoutDay(day, exercises, index) {
-        const dayElement = document.createElement('div');
-        dayElement.className = 'workout-day';
-        dayElement.innerHTML = `
-            <div class="day-header" onclick="toggleDay(${index})">
-                <h3>${day}</h3>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="day-content" id="day-content-${index}">
-                ${exercises.map((exercise, exerciseIndex) => `
-                    <div class="exercise">
-                        <h4>${exercise.name}</h4>
-                        <p>${exercise.sets} sets of ${exercise.reps} reps</p>
-                        <div class="timer" id="timer-${index}-${exerciseIndex}">01:00</div>
-                        <div class="progress-bar">
-                            <div class="progress" id="progress-${index}-${exerciseIndex}"></div>
-                        </div>
-                        <button onclick="startTimer(${index}, ${exerciseIndex}, ${exercise.sets})">Start Rest</button>
-                        <button onclick="resetTimer(${index}, ${exerciseIndex})">Reset</button>
-                        <div class="set-data">
-                            <input type="number" id="weight-${index}-${exerciseIndex}" placeholder="Weight (kg)">
-                            <input type="number" id="reps-${index}-${exerciseIndex}" placeholder="Reps">
-                            <button onclick="logSet(${index}, ${exerciseIndex})">Log Set</button>
-                        </div>
-                        <button class="toggle-history" onclick="toggleHistory(${index}, ${exerciseIndex})">Show History</button>
-                        <div class="set-history" id="history-${index}-${exerciseIndex}" style="display: none;"></div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-        return dayElement;
-    }
-
-    const workoutPlanElement = document.getElementById('workoutPlan');
-    workoutPlan.forEach((day, index) => {
-        workoutPlanElement.appendChild(createWorkoutDay(day.day, day.exercises, index));
-    });
-
-    function toggleDay(index) {
-        const content = document.getElementById(`day-content-${index}`);
-        const arrow = content.previousElementSibling.querySelector('.arrow');
-        content.classList.toggle('active');
-        arrow.classList.toggle('active');
-    }
-
-    function toggleHistory(dayIndex, exerciseIndex) {
-        const historyElement = document.getElementById(`history-${dayIndex}-${exerciseIndex}`);
-        const toggleButton = historyElement.previousElementSibling;
-        if (historyElement.style.display === 'none') {
-            historyElement.style.display = 'block';
-            toggleButton.textContent = 'Hide History';
-        } else {
-            historyElement.style.display = 'none';
-            toggleButton.textContent = 'Show History';
-        }
-    }
-
-    let timers = {};
-
-    function startTimer(dayIndex, exerciseIndex, totalSets) {
-        const timerId = `${dayIndex}-${exerciseIndex}`;
-        if (timers[timerId]) {
-            clearInterval(timers[timerId].interval);
-        }
-
-        const timerElement = document.getElementById(`timer-${timerId}`);
-        const progressElement = document.getElementById(`progress-${timerId}`);
-        const button = timerElement.nextElementSibling.nextElementSibling;
-
-        let time = 60;
-        let currentSet = 1;
-
-        button.disabled = true;
-
-        timers[timerId] = {
-            interval: setInterval(() => {
-                time--;
-                const minutes = Math.floor(time / 60);
-                const seconds = time % 60;
-                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-                const progress = ((60 - time) / 60) * 100;
-                progressElement.style.width = `${Math.min(progress, 100)}%`;
-
-                if (time <= 0) {
-                    clearInterval(timers[timerId].interval);
-                    button.disabled = false;
-                    if (currentSet < totalSets) {
-                        currentSet++;
-                        button.textContent = `Start Rest (Set ${currentSet})`;
-                    } else {
-                        button.textContent = 'Exercise Complete!';
-                        button.disabled = true;
-                    }
-                }
-            }, 1000)
-        };
-    }
-
-    function resetTimer(dayIndex, exerciseIndex) {
-        const timerId = `${dayIndex}-${exerciseIndex}`;
-        if (timers[timerId]) {
-            clearInterval(timers[timerId].interval);
-        }
-
-        const timerElement = document.getElementById(`timer-${timerId}`);
-        const progressElement = document.getElementById(`progress-${timerId}`);
-        const button = timerElement.nextElementSibling.nextElementSibling;
-
-        timerElement.textContent = '01:00';
-        progressElement.style.width = '0%';
-        button.disabled = false;
-        button.textContent = 'Start Rest';
-    }
-
-    function logSet(dayIndex, exerciseIndex) {
-        const weightInput = document.getElementById(`weight-${dayIndex}-${exerciseIndex}`);
-        const repsInput = document.getElementById(`reps-${dayIndex}-${exerciseIndex}`);
-        const historyElement = document.getElementById(`history-${dayIndex}-${exerciseIndex}`);
-
-        const weight = weightInput.value;
-        const reps = repsInput.value;
-
-        if (weight && reps) {
-            const date = new Date().toLocaleDateString();
-            const setData = `${date}: ${weight}kg x ${reps} reps`;
-
-            const setElement = document.createElement('div');
-            setElement.className = 'set-history-item';
-            setElement.textContent = setData;
-
-            historyElement.insertBefore(setElement, historyElement.firstChild);
-
-            // Store data in localStorage
-            const storageKey = `exercise-${dayIndex}-${exerciseIndex}`;
-            const storedData = JSON.parse(localStorage.getItem(storageKey) || '[]');
-            storedData.push({ date, weight, reps });
-            localStorage.setItem(storageKey, JSON.stringify(storedData));
-
-            weightInput.value = '';
-            repsInput.value = '';
-        }
-    }
-
-    // Load stored data on page load
-    function loadStoredData() {
-        workoutPlan.forEach((day, dayIndex) => {
-            day.exercises.forEach((exercise, exerciseIndex) => {
-                const storageKey = `exercise-${dayIndex}-${exerciseIndex}`;
-                const storedData = JSON.parse(localStorage.getItem(storageKey) || '[]');
-                const historyElement = document.getElementById(`history-${dayIndex}-${exerciseIndex}`);
-
-                storedData.forEach(data => {
-                    const setElement = document.createElement('div');
-                    setElement.className = 'set-history-item';
-                    setElement.textContent = `${data.date}: ${data.weight}kg x ${data.reps} reps`;
-                    historyElement.appendChild(setElement);
-                });
-            });
-        });
-    }
-
-    loadStoredData();
-    </script>
-
-    <div class="section">
-    <h2>Daily Calorie Counter</h2>
-    <div id="calorieCounter">
-        <div class="calorie-input">
-            <input type="number" id="calorieInput" placeholder="Enter calories" min="0" step="1">
-            <button onclick="addCalories()">Add Calories</button>
-        </div>
-        <div class="calorie-display">
-            <p>Total calories today: <span id="totalCalories">0</span></p>
-            <div class="progress-bar">
-                <div class="progress" id="calorieProgress"></div>
-            </div>
-            <p>Goal: <span id="calorieGoal">3000</span> calories</p>
-        </div>
-        <div class="calorie-controls">
-            <button onclick="resetCalories()">Reset for New Day</button>
-            <button onclick="setCalorieGoal()">Set New Goal</button>
-        </div>
-    </div>
-
-    <style>
-        #calorieCounter {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .calorie-input {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        .calorie-input input {
-            flex-grow: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-        }
-        .calorie-input button {
-            padding: 10px 15px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-        .calorie-display {
-            margin-bottom: 20px;
-        }
-        .progress-bar {
-            height: 20px;
-            background-color: #f0f0f0;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-        .progress {
-            height: 100%;
-            background-color: #4CAF50;
-            width: 0%;
-            transition: width 0.5s ease-in-out;
-        }
-        .calorie-controls button {
-            margin-right: 10px;
-            padding: 8px 12px;
-            font-size: 14px;
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .calorie-controls button:last-child {
-            background-color: #FF9800;
-        }
-    </style>
-
-    <script>
-        let totalCalories = 0;
-        let calorieGoal = 3000;
-
-        // Load saved data
-        window.onload = function() {
-            const savedDate = localStorage.getItem('calorieDate');
-            const currentDate = new Date().toDateString();
-
-            if (savedDate === currentDate) {
-                totalCalories = parseInt(localStorage.getItem('totalCalories')) || 0;
-                calorieGoal = parseInt(localStorage.getItem('calorieGoal')) || 3000;
-            } else {
-                resetCalories();
-            }
-
-            updateCalorieDisplay();
-        };
-
-        function addCalories() {
-            const input = document.getElementById('calorieInput');
-            const calories = parseInt(input.value);
-            if (calories > 0) {
-                totalCalories += calories;
-                updateCalorieDisplay();
-                saveCalorieData();
-                input.value = '';
-            }
-        }
-
-        function resetCalories() {
-            totalCalories = 0;
-            updateCalorieDisplay();
-            saveCalorieData();
-        }
-
-        function setCalorieGoal() {
-            const newGoal = prompt("Enter new calorie goal:", calorieGoal);
-            if (newGoal !== null && !isNaN(newGoal) && newGoal > 0) {
-                calorieGoal = parseInt(newGoal);
-                document.getElementById('calorieGoal').textContent = calorieGoal;
-                updateCalorieDisplay();
-                localStorage.setItem('calorieGoal', calorieGoal);
-            }
-        }
-
-        function updateCalorieDisplay() {
-            document.getElementById('totalCalories').textContent = totalCalories;
-            document.getElementById('calorieGoal').textContent = calorieGoal;
-            const progress = (totalCalories / calorieGoal) * 100;
-            document.getElementById('calorieProgress').style.width = `${Math.min(progress, 100)}%`;
-        }
-
-        function saveCalorieData() {
-            localStorage.setItem('totalCalories', totalCalories);
-            localStorage.setItem('calorieDate', new Date().toDateString());
-        }
-    </script>
-</div>
-
-    <div class="section">
-        <h2>Progress Tracker</h2>
-        <div class="progress-bar">
-            <div class="progress" id="overallProgress"></div>
-        </div>
-        <p>Days completed: <span id="daysCompleted">0</span> / 365</p>
-        <button onclick="updateOverallProgress()">Mark Day as Complete</button>
-    </div>
-
-    <script>
-    let daysCompleted = localStorage.getItem('daysCompleted') || 0;
-    daysCompleted = parseInt(daysCompleted);
     
-    function updateOverallProgress() {
-        if (daysCompleted < 365) {
-            daysCompleted++;
-            document.getElementById('daysCompleted').innerText = daysCompleted;
-            let progressPercentage = (daysCompleted / 365) * 100;
-            document.getElementById('overallProgress').style.width = progressPercentage + '%';
-            localStorage.setItem('daysCompleted', daysCompleted);
-        }
-    }
-
-    // Initialize progress on page load
-    document.getElementById('daysCompleted').innerText = daysCompleted;
-    document.getElementById('overallProgress').style.width = (daysCompleted / 365) * 100 + '%';
-    </script>
-
-    <div class="section">
-    <h2>Advanced Calorie Calculator</h2>
-    <p>Calculate your daily calorie needs based on your goals and estimate how long it will take to achieve them.</p>
-    <form id="calorie-calculator">
-        <div class="calculator-grid">
-            <div class="input-group">
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required="" min="18" max="100">
-            </div>
-            <div class="input-group">
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender" required="">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="height-system">Height System:</label>
-                <select id="height-system" onchange="toggleHeightInputs()">
-                    <option value="metric">Metric (cm)</option>
-                    <option value="imperial">Imperial (ft/in)</option>
-                </select>
-            </div>
-            <div id="metric-height" class="input-group">
-                <label for="height-cm">Height (cm):</label>
-                <input type="number" id="height-cm" name="height-cm" min="100" max="250" step="0.1">
-            </div>
-            <div id="imperial-height" class="input-group" style="display:none;">
-                <label for="height-ft">Height:</label>
-                <div class="imperial-input">
-                    <input type="number" id="height-ft" name="height-ft" min="3" max="8" placeholder="ft">
-                    <input type="number" id="height-in" name="height-in" min="0" max="11" placeholder="in">
-                </div>
-            </div>
-            <div class="input-group">
-                <label for="weight-system">Weight System:</label>
-                <select id="weight-system" onchange="toggleWeightInputs()">
-                    <option value="metric">Metric (kg)</option>
-                    <option value="imperial">Imperial (st/lbs)</option>
-                </select>
-            </div>
-            <div id="metric-weight" class="input-group">
-                <label for="weight-kg">Weight (kg):</label>
-                <input type="number" id="weight-kg" name="weight-kg" min="30" max="300" step="0.1">
-            </div>
-            <div id="imperial-weight" class="input-group" style="display:none;">
-                <label for="weight-st">Weight:</label>
-                <div class="imperial-input">
-                    <input type="number" id="weight-st" name="weight-st" min="3" max="50" placeholder="stone">
-                    <input type="number" id="weight-lbs" name="weight-lbs" min="0" max="13" placeholder="lbs">
-                </div>
-            </div>
-            <div class="input-group">
-                <label for="activity">Activity Level:</label>
-                <select id="activity" name="activity" required="">
-                    <option value="1.2">Sedentary (little or no exercise)</option>
-                    <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
-                    <option value="1.55">Moderately active (moderate exercise 3-5 days/week)</option>
-                    <option value="1.725">Very active (hard exercise 6-7 days a week)</option>
-                    <option value="1.9">Extra active (very hard exercise &amp; physical job)</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="goal">Goal:</label>
-                <select id="goal" name="goal" required="">
-                    <option value="maintain">Maintain weight</option>
-                    <option value="lose">Lose weight</option>
-                    <option value="gain">Gain weight</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="target-weight-system">Target Weight System:</label>
-                <select id="target-weight-system" onchange="toggleTargetWeightInputs()">
-                    <option value="metric">Metric (kg)</option>
-                    <option value="imperial">Imperial (st/lbs)</option>
-                </select>
-            </div>
-            <div id="metric-target-weight" class="input-group">
-                <label for="target-weight-kg">Target Weight (kg):</label>
-                <input type="number" id="target-weight-kg" name="target-weight-kg" min="30" max="300" step="0.1">
-            </div>
-            <div id="imperial-target-weight" class="input-group" style="display:none;">
-                <label for="target-weight-st">Target Weight:</label>
-                <div class="imperial-input">
-                    <input type="number" id="target-weight-st" name="target-weight-st" min="3" max="50" placeholder="stone">
-                    <input type="number" id="target-weight-lbs" name="target-weight-lbs" min="0" max="13" placeholder="lbs">
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="calculate-btn">Calculate</button>
-    </form>
-    <div id="result" style="display:none;">
-        <h3>Your Daily Calorie Needs:</h3>
-        <p id="calorie-result"></p>
-        <p id="time-to-goal"></p>
+    <div class="feature-card">
+      <svg class="feature-icon floating-icon" viewBox="0 0 24 24">
+        <path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path>
+      </svg>
+      <h3>Smart Timer</h3>
+      <p>Keep your rest periods precise with our built-in timer. Features include custom intervals, rest timers, and workout duration tracking.</p>
     </div>
 
-    <style>
-        .calculator-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .input-group label {
-            margin-bottom: 5px;
-        }
-        .input-group input,
-        .input-group select {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .imperial-input {
-            display: flex;
-            gap: 10px;
-        }
-        .imperial-input input {
-            width: 50%;
-        }
-        .calculate-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .calculate-btn:hover {
-            background-color: #45a049;
-        }
-        #result {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f0f0f0;
-            border-radius: 4px;
-        }
-    </style>
+    <div class="feature-card">
+      <svg class="feature-icon floating-icon" viewBox="0 0 24 24">
+        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+      </svg>
+      <h3>Share &amp; Connect</h3>
+      <p>Share your workouts and connect with the fitness community. Follow friends, join challenges, and get inspired by others' progress.</p>
+    </div>
+  </div>
 
-    <script>
-        function toggleHeightInputs() {
-            const system = document.getElementById('height-system').value;
-            document.getElementById('metric-height').style.display = system === 'metric' ? 'block' : 'none';
-            document.getElementById('imperial-height').style.display = system === 'imperial' ? 'block' : 'none';
-        }
+  <div class="about-section">
+    <h2>Why Choose WorkoutMaker?</h2>
+    <p>WorkoutMaker is designed by fitness enthusiasts for fitness enthusiasts. Our app combines powerful tracking capabilities with an intuitive interface to make your fitness journey seamless and enjoyable.</p>
+    <div class="feature-list">
+      <ul>
+        <li>✓ Track unlimited workouts</li>
+        <li>✓ Access to 100+ exercises with proper form guides</li>
+        <li>✓ Progress tracking with detailed analytics</li>
+        <li>✓ Custom workout templates</li>
+        <li>✓ Import and export workouts for your clients or from your coaches</li>
+      </ul>
+    </div>
+  </div>
 
-        function toggleWeightInputs() {
-            const system = document.getElementById('weight-system').value;
-            document.getElementById('metric-weight').style.display = system === 'metric' ? 'block' : 'none';
-            document.getElementById('imperial-weight').style.display = system === 'imperial' ? 'block' : 'none';
-        }
+  <div class="steps">
+    <h2>Getting Started is Easy</h2>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>Download the App</h3>
+        <p>Available on IOS</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>Set up your weekly schedule</h3>
+        <p>Set up your preferences and goals</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>Start Training</h3>
+        <p>Begin logging your workouts and tracking progress</p>
+      </div>
+    </div>
+  </div>
 
-        function toggleTargetWeightInputs() {
-            const system = document.getElementById('target-weight-system').value;
-            document.getElementById('metric-target-weight').style.display = system === 'metric' ? 'block' : 'none';
-            document.getElementById('imperial-target-weight').style.display = system === 'imperial' ? 'block' : 'none';
-        }
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Feedback &amp; Bug Reports</h3>
+      <p class="price" style="font-size: 1.2rem; color: var(--text);">Help Us Improve!</p>
+      <p style="margin: 1rem 0">We're constantly working to make WorkoutMaker better. If you encounter any bugs, have feature suggestions, or want to provide feedback, we'd love to hear from you!</p>
+      <ul class="feature-list">
+        <li>Found a bug? Let us know!</li>
+        <li>Have a feature idea?</li>
+        <li>Want to share feedback?</li>
+      </ul>
+      <p style="margin: 1rem 0">Contact us at:</p>
+      <p style="font-weight: bold; color: var(--accent); margin-bottom: 1rem">Jaiitriips@gmail.com</p>
+      <a href="mailto:Jaiitriips@gmail.com" class="cta-button">Send Feedback</a>
+    </div>
+    <div class="price-card">
+      <h3>All for only</h3>
+      <p class="price">£4.99</p>
+      <ul class="feature-list">
+        <li>One-time fee of £4.99</li>
+        <li>Access to all exercises</li>
+        <li>Detailed analytics</li>
+        <li>Custom templates</li>
+        <li>Priority support</li>
+      </ul>
+    </div>
+  </div>
 
-        document.getElementById('calorie-calculator').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get input values
-            const age = parseInt(document.getElementById('age').value);
-            const gender = document.getElementById('gender').value;
-            const heightSystem = document.getElementById('height-system').value;
-            const weightSystem = document.getElementById('weight-system').value;
-            const activity = parseFloat(document.getElementById('activity').value);
-            const goal = document.getElementById('goal').value;
-            
-            // Get height in cm
-            let heightCm;
-            if (heightSystem === 'metric') {
-                heightCm = parseFloat(document.getElementById('height-cm').value);
-            } else {
-                const feet = parseInt(document.getElementById('height-ft').value);
-                const inches = parseInt(document.getElementById('height-in').value);
-                heightCm = (feet * 30.48) + (inches * 2.54);
-            }
-            
-            // Get weight in kg
-            let weightKg;
-            if (weightSystem === 'metric') {
-                weightKg = parseFloat(document.getElementById('weight-kg').value);
-            } else {
-                const stone = parseInt(document.getElementById('weight-st').value);
-                const lbs = parseInt(document.getElementById('weight-lbs').value);
-                weightKg = (stone * 6.35029) + (lbs * 0.45359237);
-            }
-            
-            // Get target weight in kg
-            const targetWeightSystem = document.getElementById('target-weight-system').value;
-            let targetWeightKg;
-            if (targetWeightSystem === 'metric') {
-                targetWeightKg = parseFloat(document.getElementById('target-weight-kg').value);
-            } else {
-                const targetStone = parseInt(document.getElementById('target-weight-st').value);
-                const targetLbs = parseInt(document.getElementById('target-weight-lbs').value);
-                targetWeightKg = (targetStone * 6.35029) + (targetLbs * 0.45359237);
-            }
-            
-            // Calculate BMR
-            let bmr;
-            if (gender === 'male') {
-                bmr = 88.362 + (13.397 * weightKg) + (4.799 * heightCm) - (5.677 * age);
-            } else {
-                bmr = 447.593 + (9.247 * weightKg) + (3.098 * heightCm) - (4.330 * age);
-            }
-            
-            // Calculate TDEE
-            const tdee = bmr * activity;
-            
-            // Calculate daily calorie needs based on goal
-            let dailyCalories;
-            let timeToGoal = '';
-            if (goal === 'maintain') {
-                dailyCalories = tdee;
-            } else if (goal === 'lose') {
-                dailyCalories = tdee - 500; // 500 calorie deficit for weight loss
-                const weightToLose = weightKg - targetWeightKg;
-                const weeksToGoal = weightToLose / 0.5; // Assuming 0.5 kg loss per week
-                timeToGoal = `Estimated time to reach goal: ${weeksToGoal.toFixed(1)} weeks`;
-            } else if (goal === 'gain') {
-                dailyCalories = tdee + 500; // 500 calorie surplus for weight gain
-                const weightToGain = targetWeightKg - weightKg;
-                const weeksToGoal = weightToGain / 0.5; // Assuming 0.5 kg gain per week
-                timeToGoal = `Estimated time to reach goal: ${weeksToGoal.toFixed(1)} weeks`;
-            }
-            
-            // Display results
-            document.getElementById('calorie-result').textContent = `To ${goal} weight, you should consume approximately ${Math.round(dailyCalories)} calories per day.`;
-            document.getElementById('time-to-goal').textContent = timeToGoal;
-            document.getElementById('result').style.display = 'block';
-        });
-
-        // Initialize input visibility
-        toggleHeightInputs();
-        toggleWeightInputs();
-        toggleTargetWeightInputs();
-    </script>
+  <div style="text-align: center;">
+    <a href="https://apps.apple.com/app/workoutmaker" class="cta-button">Download Now</a>
+  </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.feature-card');
+  
+  function checkScroll() {
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      if (cardTop < windowHeight * 0.8) {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkScroll);
+  checkScroll();
+});
+</script>
+
 </body></html>
