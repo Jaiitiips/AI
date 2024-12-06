@@ -1,0 +1,212 @@
+<html><head><base href="https://workoutmakerapp.com">
+<title>Privacy Policy | Workout Maker App</title>
+<style>
+:root {
+  --primary: #2a5bd7;
+  --text: #333;
+  --bg: #fff; 
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  padding: 2rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--primary);
+  transform: translateX(-50%);
+  animation: underline 0.8s ease-out forwards;
+}
+
+@keyframes underline {
+  to {
+    width: 100px;
+  }
+}
+
+h2 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.updated {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin: 2rem 0;
+}
+
+.animate-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact {
+  background: #f5f5f5;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.home-link {
+  display: inline-block;
+  color: var(--primary);
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: color 0.2s;
+}
+
+.home-link:hover {
+  color: #1a3d9c;
+}
+
+.home-link svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container animate-in">
+  <a href="https://workoutmakerapp.com" class="home-link">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+    Back to Homepage
+  </a>
+
+  <h1>Privacy Policy</h1>
+  
+  <p class="updated">Last updated: June 14, 2023</p>
+
+  <p>Welcome to Workout Maker App. We are committed to protecting your personal information and your right to privacy. This privacy policy describes how we collect, use, and protect your personal information when you use our app.</p>
+
+  <h2>Information We Collect</h2>
+  <p>When you use Workout Maker App, we may collect:</p>
+  <ul>
+    <li>Basic account information (name, email)</li>
+    <li>Workout preferences and history</li>
+    <li>Device information</li>
+    <li>Usage analytics</li>
+  </ul>
+
+  <h2>How We Use Your Information</h2>
+  <p>We use the collected information to:</p>
+  <ul>
+    <li>Personalize your workout experience</li>
+    <li>Improve our app features and functionality</li>
+    <li>Send important updates about the app</li>
+    <li>Respond to your requests and support needs</li>
+  </ul>
+
+  <h2>Data Security</h2>
+  <p>We implement appropriate technical and organizational security measures to protect your personal information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+
+  <h2>Data Sharing</h2>
+  <p>We do not sell your personal information to third parties. We may share data with:</p>
+  <ul>
+    <li>Service providers who assist in app operations</li>
+    <li>Analytics partners to improve our service</li>
+    <li>Law enforcement when required by law</li>
+  </ul>
+
+  <h2>Your Rights</h2>
+  <p>You have the right to:</p>
+  <ul>
+    <li>Access your personal data</li>
+    <li>Correct inaccurate data</li>
+    <li>Request deletion of your data</li>
+    <li>Opt-out of marketing communications</li>
+  </ul>
+
+  <div class="contact">
+    <h2>Contact Us</h2>
+    <p>If you have questions about this privacy policy or our practices, please contact us at:</p>
+    <p>Email: Jaiitriips@gmail.com</p>
+    <p>Address: 20 Singleton Road, Ashford, Kent TN23 3BB</p>
+  </div>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page and updating the "Last updated" date.</p>
+
+  <h2>Cookie Policy</h2>
+  <p>We use cookies and similar tracking technologies to track activity on our app and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
+
+  <p class="updated">By using Workout Maker App, you agree to this privacy policy and consent to our data practices as described above.</p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // Add animation class to elements as they scroll into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  });
+
+  document.querySelectorAll('h2, p, ul').forEach((el) => observer.observe(el));
+});
+</script>
+
+</body></html>
